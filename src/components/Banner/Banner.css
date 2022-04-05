@@ -1,0 +1,20 @@
+.banner{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 30vh;
+    background-color: rgb(41, 65, 171);
+}
+.banner > h1{
+    font-size: 50px;
+    color: #1ed760;
+    font-weight: bolder;
+}
+.banner > span{
+
+    font-size: 30px;
+    color: #1ed760;
+
+}
