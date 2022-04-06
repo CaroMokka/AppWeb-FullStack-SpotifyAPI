@@ -103,9 +103,7 @@ def get_artists():
 
     return response
 
-  
 
-   
 
 
 ###--->GET Albums <---### 
@@ -138,19 +136,36 @@ def get_albums():
     #str(album_ids)
     return response      
 
+###---> GET Albums por IDs de artista
+@app.route('/get_albums/<string:artist_id>', methods=['GET'])
+def get_albums_id(artist_id):
+    tokens = get_tokens()
+
+    uri = f'https://api.spotify.com/v1/artists/{artist_id}/albums?include_groups=album,single&country=US'
+    headers = { 'Authorization': f'Bearer {tokens["access_token"]}' }
+    r = requests.get(uri, headers=headers)
+    response = r.json()
+
+    print('Albums Recibidos!')
+
+    return response     
 
 
 
-####---> GET Tracks <---###
-@app.route('/get_tracks', methods=['GET'])
-def get_tracks():
+
+####---> GET Tracks por Ids de Album <---###
+@app.route('/get_tracks/<string:album_id>', methods=['GET'])
+def get_tracks(album_id):
     with open('token.json', 'r') as openfile:
         tokens = json.load(openfile)
 
+    uri = 'https://api.spotify.com/v1/albums/{album_id}/tracks'
     headers = { 'Authorization': f'Bearer {tokens["access_token"]}' }
 
-    r = requests.get(TRACKS_PLAYLIST1, headers=headers)
+    r = requests.get(uri, headers=headers)
     response = r.json()
+
+    print('Tracks Recibidos!')
 
     return response
 
@@ -184,3 +199,12 @@ def get_tracks():
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)
+
+
+
+
+
+    """     artist_ids = session['artist_ids']
+
+    album_ids = []
+    album_names = {} """

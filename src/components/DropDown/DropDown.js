@@ -15,7 +15,10 @@ const DropDown = () => {
         fetch(initialUrl)
             .then(response => response.json())
             .then(result => {
-                const artistas = result.artists.items
+                const artistas = result.artists.items //Aqui recorri el array artists
+
+        
+
                 setArtists(artistas);
                 console.log(artistas);
             })
@@ -35,7 +38,7 @@ const DropDown = () => {
 
             {
                 artists.map((item, index) => (
-                    <Card key={index} name={item.name} image={item.images[2].url}/>
+                    <Card key={index} name={item.name} image={item.images[2].url} artist_id={item.id}/>
 
                 ))
             }
