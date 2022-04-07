@@ -11,6 +11,8 @@ const DropDown = () => {
 
     const initialUrl = "http://127.0.0.1:5000/get_artists";
 
+    //Fetch a GET Artist en BAckend
+
     const fetchArtists = () => {
         fetch(initialUrl)
             .then(response => response.json())
@@ -55,36 +57,3 @@ export default DropDown
 
 
 
-
-/* <div className='row'>
-
-<div className='col col-md-6'>
-    <div className="dropdown">
-        <button className="btn btn-dark dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
-            Focus Time
-        </button>
-        <ul className="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenu2">
-            <li><button className="dropdown-item" type="button">Megadeth</button></li>
-            <li><button className="dropdown-item" type="button">Metallica</button></li>
-            <li><button className="dropdown-item" type="button">Foo Fighters</button></li>
-            <li><button className="dropdown-item" type="button"> Nirvana</button></li>
-        </ul>
-    </div>
-
-</div>
-<div className='col col-md-6'>
-    <div className="dropdown">
-        <button className="btn btn-dark dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
-            Hotfixeando-ando
-        </button>
-        <ul className="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenu2">
-            <li><button className="dropdown-item" type="button">Skrillex</button></li>
-            <li><button className="dropdown-item" type="button">Avicii</button></li>
-            <li><button className="dropdown-item" type="button">Zomboy</button></li>
-            <li><button className="dropdown-item" type="button"> Deorro</button></li>
-        </ul>
-    </div>
-
-</div>
-
-</div> */

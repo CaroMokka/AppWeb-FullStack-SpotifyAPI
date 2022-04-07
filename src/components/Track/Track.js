@@ -1,10 +1,10 @@
 import React from 'react'
 
-const Track = () => {
+const Track = ({ name }) => {
     return (
         <span className='tracks d-flex justify-content-between text-center'>
             <p>Imagen</p>
-            <p>Pista 1</p>
+            <p>{name}</p>
             <p>4:62</p>
         </span>
     )

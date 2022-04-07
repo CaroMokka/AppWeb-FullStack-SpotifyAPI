@@ -30,15 +30,12 @@ def get_tokens():
     return tokens    
 
 
+
+
 app.secret_key = os.getenv('SECRET_KEY')
 
+###---> ROUTES
 
-
-###---> Routes
-
-@app.route('/ping')
-def ping():
-    return jsonify({"message": "pong!"})
 
 ####---> Authentication <---####
 @app.route('/')
@@ -91,14 +88,14 @@ def get_artists():
     r = requests.get(MY_FOLLOWED_ARTISTS_URL, headers=headers)
     response = r.json()
 
-    #artist_ids = []
-    #artists = response['artists']['items']
+    artist_ids = [] ###
+    artists = response['artists']['items'] ###
 
-    #for artist in artists:
-        #artist_ids.append(artist['id'])
+    for artist in artists: ###  ARRAY
+        artist_ids.append(artist['id'])
 
     print('Ids Artistas Recupedado')
-    #session['artist_ids'] = artist_ids
+    session['artist_ids'] = artist_ids
     #str(artist_ids)
 
     return response
@@ -107,14 +104,13 @@ def get_artists():
 
 
 ###--->GET Albums <---### 
-#@cross_origin
 @app.route('/get_albums', methods=['GET'])
 def get_albums():
     tokens = get_tokens()
     artist_ids = session['artist_ids']
 
-    album_ids = []
-    album_names = {}
+    
+ 
 
     for id in artist_ids:
         uri = f'https://api.spotify.com/v1/artists/{id}/albums?include_groups=album,single&country=US'
@@ -122,19 +118,30 @@ def get_albums():
         r = requests.get(uri, headers=headers)
         response = r.json()
 
-        #albums = response['items']
+        album_ids = [] ###
+
+        albums = response['items'] ###
         
-        #for album in albums:
+        for album in albums: ###
+            album_ids.append(album['id'])
             #album_name = album['name']
             #artist_name = album['artists'][0]['name']
             #if album_name not in album_names or artist_name != album_names[album_name]:
                 #album_ids.append(album['id'])
                 #album_names[album_name] = artist_name
 
-    #session['album_ids'] =  album_ids
-    print('retrieva album IDs!')
+    
+    print('Ids Albums Recuperados!')
+    session['album_ids'] =  album_ids
     #str(album_ids)
     return response      
+
+
+
+###### ------>>>>> Aqui hacia abajo ---->>>#####
+
+
+
 
 ###---> GET Albums por IDs de artista
 @app.route('/get_albums/<string:artist_id>', methods=['GET'])
@@ -148,24 +155,21 @@ def get_albums_id(artist_id):
 
     print('Albums Recibidos!')
 
-    return response     
+    return response   
 
 
-
-
-####---> GET Tracks por Ids de Album <---###
+### GET Tracks
 @app.route('/get_tracks/<string:album_id>', methods=['GET'])
-def get_tracks(album_id):
-    with open('token.json', 'r') as openfile:
-        tokens = json.load(openfile)
+def get_ids(album_id):
+    tokens = get_tokens()
 
-    uri = 'https://api.spotify.com/v1/albums/{album_id}/tracks'
-    headers = { 'Authorization': f'Bearer {tokens["access_token"]}' }
-
+    uri = f'https://api.spotify.com/v1/albums/{album_id}/tracks' ### esta ruta esta funcionando por navegador
+    headers = { 'Authorization': f'Bearer {tokens["access_token"]}'}
     r = requests.get(uri, headers=headers)
     response = r.json()
+    
 
-    print('Tracks Recibidos!')
+    print('TRacks Recibidos!')
 
     return response
 
@@ -182,12 +186,6 @@ def get_tracks(album_id):
 
 
 
-""" while response['artists']['next']:
-        next_page_uri = response['artists']['next']
-        r = requests.get(next_page_uri, headers=headers)
-        response = r.json()
-        for artists in response['artists']['items']:
-            artist_ids.append(artists['id']) """
 
 
 
@@ -208,3 +206,14 @@ if __name__ == '__main__':
 
     album_ids = []
     album_names = {} """
+
+
+
+
+
+""" while response['artists']['next']:
+        next_page_uri = response['artists']['next']
+        r = requests.get(next_page_uri, headers=headers)
+        response = r.json()
+        for artists in response['artists']['items']:
+            artist_ids.append(artists['id']) """

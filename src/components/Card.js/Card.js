@@ -5,7 +5,7 @@ import './Card.css';
 const Card = ({ name, image, artist_id }) => {
 
     const url_artist = `/artist/${artist_id} `
-   
+
     return (
 
         <div className="card m-2 text-center" style={{ width: '12rem' }}>
@@ -14,10 +14,9 @@ const Card = ({ name, image, artist_id }) => {
             </NavLink>
 
             <div className="card-body">
-                <h3 className="card-title">{name}</h3>
-
-
+                <div className="card-title">{name}</div>
             </div>
+            
         </div>
 
     )

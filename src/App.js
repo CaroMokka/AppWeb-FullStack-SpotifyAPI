@@ -5,12 +5,15 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './views/Home';
 import Music from './views/Music';
 import ArtistPage from './views/ArtistPage';
+import Tracks from './views/Tracks';
 
 //Import Components
 import Navbar from './components/Navbar/Navbar.js';
 
 //Styles
 import './App.css';
+
+
 
 function App() {
   return (
@@ -32,6 +35,10 @@ function App() {
       <Routes>
         <Route path='/artist/:artist_id' element={<ArtistPage />} />
       </Routes>
+      <Routes>
+        <Route path='/tracks/:album_id' element={<Tracks />} />
+      </Routes>
+     
 
       
     </BrowserRouter>

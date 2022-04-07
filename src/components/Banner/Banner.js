@@ -3,7 +3,7 @@ import './Banner.css'
 
 const Banner = () => {
   return (
-    <div className='container-fluid banner'>
+    <div className='container-fluid mt-5 banner'>
         <h1>¿Tienes ganas de escuchar algo?</h1>
         <span>Revisa nuestras mejores playlists para codear con ritmo</span>
     </div>
