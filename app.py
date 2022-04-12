@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, redirect, request, session
 from dotenv import load_dotenv
 from flask_cors import CORS, cross_origin
-from tests import tests
+
 
 
 import requests
@@ -20,8 +20,7 @@ MY_FOLLOWED_ARTISTS_URL = 'https://api.spotify.com/v1/me/following?type=artist'
 
 app = Flask(__name__)
 CORS(app)
-#CORS(app,resources={r'/*':{'origins':'http://localhost'}})
-#cors = CORS(app, resources={r"/*": {"origins": "*"}})
+
 
 
 def get_tokens():
@@ -99,47 +98,6 @@ def get_artists():
     #str(artist_ids)
 
     return response
-
-
-
-
-###--->GET Albums <---### 
-@app.route('/get_albums', methods=['GET'])
-def get_albums():
-    tokens = get_tokens()
-    artist_ids = session['artist_ids']
-
-    
- 
-
-    for id in artist_ids:
-        uri = f'https://api.spotify.com/v1/artists/{id}/albums?include_groups=album,single&country=US'
-        headers = { 'Authorization': f'Bearer {tokens["access_token"]}' }
-        r = requests.get(uri, headers=headers)
-        response = r.json()
-
-        album_ids = [] ###
-
-        albums = response['items'] ###
-        
-        for album in albums: ###
-            album_ids.append(album['id'])
-            #album_name = album['name']
-            #artist_name = album['artists'][0]['name']
-            #if album_name not in album_names or artist_name != album_names[album_name]:
-                #album_ids.append(album['id'])
-                #album_names[album_name] = artist_name
-
-    
-    print('Ids Albums Recuperados!')
-    session['album_ids'] =  album_ids
-    #str(album_ids)
-    return response      
-
-
-
-###### ------>>>>> Aqui hacia abajo ---->>>#####
-
 
 
 

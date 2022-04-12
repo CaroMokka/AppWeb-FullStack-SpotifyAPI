@@ -12,7 +12,7 @@ const ListTracks = ({ name, preview_url, track_number, duration_ms }) => {
 
 
 
-    //console.log(duration_ms);
+
     return (
         <>
             <a href={preview_url} className="list-group-item list-group-item" aria-current="true">

@@ -4,7 +4,7 @@ import './Card.css';
 
 const Card = ({ name, image, artist_id }) => {
 
-    const url_artist = `/artist/${artist_id} `
+    const url_artist = `/artist/${artist_id}`
 
     return (
 

@@ -1,5 +1,0 @@
-tests = [
-    {
-        "name": "carolina"
-    }
-]

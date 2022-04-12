@@ -7,11 +7,11 @@ import ListTracks from '../components/ListTracks/ListTracks';
 const Tracks = () => {
     const [tracksList, setTrackList] = useState([]);
 
-    const { album_id, artist_id } = useParams();
+    const { album_id } = useParams();
 
     const uri = `http://127.0.0.1:5000/get_tracks/${album_id}`
 
-   // const urlAlbums = `/artist/${artist_id}`
+
 
 
 
