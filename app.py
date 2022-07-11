@@ -159,19 +159,3 @@ if __name__ == '__main__':
 
 
 
-
-    """     artist_ids = session['artist_ids']
-
-    album_ids = []
-    album_names = {} """
-
-
-
-
-
-""" while response['artists']['next']:
-        next_page_uri = response['artists']['next']
-        r = requests.get(next_page_uri, headers=headers)
-        response = r.json()
-        for artists in response['artists']['items']:
-            artist_ids.append(artists['id']) """
